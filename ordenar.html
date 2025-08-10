@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ordenar Ahora - Dulce Mordidita</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="Romyk_files/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="Romyk_files/style.css">
+<link rel="stylesheet" href="Romyk_files/responsive.css">
+<link rel="stylesheet" href="Romyk_files/font-awesome.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap" rel="stylesheet">
+<style>
+select {
+  background-color: #fff0f3;     /* Fondo rosado claro */
+  color: #333;                   /* Texto oscuro para que se lea */
+  border: 2px solid #e3a19b;     /* Borde rosado */
+  border-radius: 10px;           /* Bordes redondeados */
+  padding: 10px;                 /* Espaciado interno */
+  font-size: 1em;
+}
+
+select option {
+  background-color: #ffe6ec;     /* Fondo más fuerte en las opciones */
+  color: #000;                   /* Texto negro en opciones */
+}
+</style>
+</head>
+<body>
+<div class="header_section">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="index.html"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Cambiar navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Hogar</a></li>
+          <li class="nav-item"><a class="nav-link" href="acerca.html">Acerca de</a></li>
+          <li class="nav-item active"><a class="nav-link" href="productos.html">Productos</a></li>
+                               <li class="nav-item">
+                        <a class="nav-link" href="servicioss.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Servicios</font></font></a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="blog.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Blog</font></font></a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="contacto.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Contáctenos</font></font></a>
+                     </li>
+                  </ul>
+                  <form class="form-inline my-2 my-lg-0">
+                     <div class="login_bt"><a href="leer-mas.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Acceso</font></font><span style="color: #222222;"><i class="fa fa-user" aria-hidden="true"></i></span></a></div>
+        <form class="form-inline my-2 my-lg-0">
+          
+          <div class="fa fa-search form-control-feedback"></div>
+        </form>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<div class="contact_section layout_padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="contact_main">
+          <h1 class="contact_taital">Ordenar Ahora</h1>
+          <form action="#" method="post">
+            <div class="form-group">
+              <input type="text" class="email-bt" placeholder="Nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+              <input type="email" class="email-bt" placeholder="Correo electrónico" name="email" required>
+            </div>
+            <div class="form-group">
+              <input type="tel" class="email-bt" placeholder="Número de teléfono" name="telefono" required>
+            </div>
+            <div class="form-group">
+              <textarea class="email-bt" placeholder="¿Qué deseas ordenar?" name="pedido" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+              <select class="email-bt" name="pago" required>
+                <option value="">Método de pago</option>
+                <option value="efectivo">Efectivo</option>
+                <option value="transferencia">Transferencia</option>
+                <option value="QR">QR</option>
+              </select>
+            </div>
+            <div class="main_bt"><button type="submit">ENVIAR</button></div>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="location_text">
+          <ul>
+            <li><i class="fa fa-instagram"></i> Instagram: dulce_mordidita1</li>
+            <li><i class="fa fa-facebook"></i> Facebook: Dulce Mordidita</li>
+            <li><i class="fa fa-phone"></i> Llamar: +504 9421-0262</li>
+            <li><i class="fa fa-envelope"></i> Correo: dulcemordidita@gmail.com</li>
+          </ul>
+        </div>
+        <div class="mail_main">
+          <h3 class="newsletter_text">Suscríbete</h3>
+          <div class="form-group">
+            <textarea class="update_mail" placeholder="Ingrese su correo electrónico" rows="2" name="suscripcion"></textarea>
+            <div class="subscribe_bt"><a href="#">Suscribir</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p class="copyright_text">
+      
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

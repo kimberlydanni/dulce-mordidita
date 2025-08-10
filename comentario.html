@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Enviar Comentario a WhatsApp - Solución</title>
+<style>
+  body { font-family: Arial, sans-serif; background:#fff8f0; margin:0; display:flex; align-items:center; justify-content:center; min-height:100vh; padding:20px; }
+  .card { background:#fff; padding:20px; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.08); width:420px; max-width:100%; }
+  h2 { color:#d63384; text-align:center; margin:0 0 10px; }
+  label { display:block; font-weight:600; margin-top:8px; }
+  input, textarea, button, a.fallback { width:100%; padding:10px; margin-top:8px; box-sizing:border-box; border-radius:8px; border:1px solid #dcdcdc; font-size:14px; }
+  textarea { min-height:100px; resize:vertical; }
+  button { background:#25D366; color:#fff; border:none; cursor:pointer; font-weight:700; }
+  button:hover { opacity:0.95; }
+  .note { font-size:13px; color:#555; margin-top:10px; }
+  .warning { color:#b33; font-weight:700; }
+  .debug { font-size:13px; color:#333; margin-top:8px; word-break:break-all; }
+  a.fallback { display:none; text-decoration:none; text-align:center; background:#e9ecef; color:#222; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h2>📩 Enviar Comentario</h2>
+    <label for="nombre">Nombre</label>
+    <input id="nombre" type="text" placeholder="Tu nombre">
+    <label for="comentario">Comentario</label>
+    <textarea id="comentario" placeholder="Escribe tu comentario..."></textarea>
+    <button id="enviarBtn" type="button">Enviar a WhatsApp</button>
+    <a id="fallback" class="fallback" target="_blank" rel="noopener">Si no se abre, haz clic aquí</a>
+    <p id="msg" class="note"></p>
+    <p id="debug" class="debug"></p>
+  </div>
+
+<script>
+(function(){
+  const numero = '50494210262'; // tu número
+
+  const enviarBtn = document.getElementById('enviarBtn');
+  const fallback = document.getElementById('fallback');
+  const msg = document.getElementById('msg');
+  const debug = document.getElementById('debug');
+
+  // Mensaje si abres el archivo como file://
+  if (location.protocol === 'file:') {
+    msg.innerHTML = '<span class="warning">Atención:</span> Estás abriendo el archivo localmente (file://). Algunos navegadores limitan redirecciones desde archivos locales. Para probar correctamente sube el archivo a tu hosting o usa un servidor local (ver instrucciones más abajo).';
+  } else {
+    msg.textContent = 'Abre esta página desde tu web (hosting) para mejor compatibilidad en móviles. En PC abrirá WhatsApp Web (debes haber iniciado sesión).';
+  }
+
+  enviarBtn.addEventListener('click', function(e) {
+    try {
+      const nombre = document.getElementById('nombre').value.trim();
+      const comentario = document.getElementById('comentario').value.trim();
+
+      if (!nombre || !comentario) {
+        alert('Por favor completa todos los campos.');
+        return;
+      }
+
+      const texto = encodeURIComponent(`Hola, soy ${nombre} y mi comentario es: ${comentario}`);
+      const waUrl = `https://wa.me/${numero}?text=${texto}`;
+
+      console.log('WA URL:', waUrl);
+      debug.textContent = 'URL generada: ' + waUrl;
+
+      // Intento 1: navegar con location.href (no suele bloquearse por bloqueadores de popups)
+      window.location.href = waUrl;
+
+      // Si por algún motivo la navegación fue bloqueada, mostramos enlace manual
+      fallback.href = waUrl;
+      fallback.style.display = 'inline-block';
+      fallback.textContent = 'Si no se abrió automáticamente, haz clic aquí para enviar el mensaje';
+
+      // También ponemos un pequeño timeout para abrir en nueva pestaña como fallback
+      setTimeout(function(){
+        // Si sigue en la página, intentamos abrir en nueva pestaña (puede bloquearse por popup blockers)
+        if (document.visibilityState === 'visible') {
+          try { window.open(waUrl, '_blank'); } catch(err) { console.warn('open blocked', err); }
+        }
+      }, 900);
+
+    } catch (err) {
+      console.error(err);
+      alert('Ocurrió un error: ' + (err.message || err));
+    }
+  });
+})();
+</script>
+
+<!-- Instrucciones rápidas para pruebas local/hosting -->
+<!--
+Si estás probando en tu computadora y no quieres subir a internet, puedes correr un servidor local:
+1) Abre la terminal/PowerShell en la carpeta donde está el archivo.
+2) Si tienes Python instalado, ejecuta:
+   - python -m http.server 8000   (Python 3)
+   Luego abre en el navegador: http://localhost:8000/comentarios_whatsapp_solucion.html
+3) O usa la extensión "Live Server" de VSCode si usas Visual Studio Code.
+
+Prueba preferida: subir el archivo a tu hosting o a Netlify/Vercel y abrir el enlace desde el móvil.
+-->
+</body>
+</html>
